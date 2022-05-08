@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Input from "../../components/Input";
-import { Button } from "@mui/material";
+import Button from "../../components/Button/Button";
 import styles from "./Login.module.scss";
 
 function Login() {
@@ -12,9 +12,9 @@ function Login() {
       <div className={styles["login-form"]}>
         <Input placeholder="Email" />
         <Input placeholder="Password" password />
-        <Button variant="outlined" className={styles["login-button"]}>
-          Login
-        </Button>
+        <div className={styles["login-button"]}>
+          <Button variant="outlined" text="Login" />
+        </div>
       </div>
     </div>
   );

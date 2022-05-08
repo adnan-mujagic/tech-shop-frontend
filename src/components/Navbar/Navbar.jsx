@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import Button from "../Button";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
@@ -8,10 +8,12 @@ function Navbar() {
       <div className={styles["navbar-container"]}>
         <div className={styles.logo}>Logo</div>
         <div className={styles.buttons}>
-          <Button variant="contained" className={styles.login}>
-            Login
-          </Button>
-          <Button variant="outlined">Register</Button>
+          <Button
+            variant="contained"
+            className={styles["amarweajklsdfl"]}
+            text="Login"
+          />
+          <Button variant="outlined" text="Register" />
         </div>
       </div>
     </div>

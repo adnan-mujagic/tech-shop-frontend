@@ -1,0 +1,30 @@
+.button-wrapper {
+  display: inline;
+}
+
+.button {
+  box-shadow: none !important;
+  text-transform: none !important;
+  margin: 5px !important;
+
+  &:hover {
+    outline: none;
+    border: none;
+    box-shadow: none !important;
+  }
+}
+
+.button-contained {
+  @extend .button;
+  &:hover {
+    background-color: rgb(91, 91, 172) !important;
+  }
+}
+
+.button-outlined {
+  @extend .button;
+  &:hover {
+    border: 1px solid rgb(91, 91, 172) !important;
+    color: rgb(91, 91, 172);
+  }
+}
