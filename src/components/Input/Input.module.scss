@@ -1,0 +1,10 @@
+.input {
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid black;
+
+  &:focus {
+    color: crimson;
+  }
+}
