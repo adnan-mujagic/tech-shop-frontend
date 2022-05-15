@@ -13,7 +13,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function Login() {
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({ password: "", email: "" });
   const [hasError, setHasError] = useState(false);
   const [message, setMessage] = useState("");
 
