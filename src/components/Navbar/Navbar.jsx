@@ -17,7 +17,11 @@ function Navbar() {
             text="Login"
             onClickHandler={() => navigate("/login")}
           />
-          <Button variant="outlined" text="Register" />
+          <Button
+            onClickHandler={() => navigate("/register")}
+            variant="outlined"
+            text="Register"
+          />
         </div>
       </div>
     </div>

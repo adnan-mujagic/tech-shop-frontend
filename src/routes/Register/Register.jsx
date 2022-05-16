@@ -6,16 +6,22 @@ import Api from "./../../api/api.js";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.scss";
+import styles from "./Register.module.scss";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Login() {
+function Register() {
   const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [formData, setFormData] = useState({ password: "", email: "" });
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    username: "",
+    password: "",
+  });
   const [hasError, setHasError] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -32,17 +38,13 @@ function Login() {
     e.preventDefault();
     setLoading(true);
 
-    Api.post("login", formData)
+    Api.post("register", formData)
       .then((response) => {
         setLoading(false);
         setHasError(false);
-        setMessage("Login successful");
+        setMessage(response.message);
         setShowSnackbar(true);
-        localStorage.setItem(
-          "session",
-          JSON.stringify({ token: response.token })
-        );
-        navigate("/dashboard");
+        localStorage.setItem("token", response.token);
       })
       .catch((err) => {
         setLoading(false);
@@ -71,32 +73,54 @@ function Login() {
         </Alert>
       </Snackbar>
       <Navbar />
-      <h1 className={styles.heading}>Login</h1>
-      <div>
-        <form className={styles["login-form"]} onSubmit={onSubmit}>
-          <Input name="email" onChange={onChange} placeholder="Email" />
+      <h1 className={styles.heading}>Register</h1>
+      <div className={styles["form-container"]}>
+        <form className={styles["register-form"]} onSubmit={onSubmit}>
+          <div className={styles.names}>
+            <Input
+              long
+              name="first_name"
+              onChange={onChange}
+              placeholder="First name"
+            />
+            <Input
+              long
+              name="last_name"
+              onChange={onChange}
+              placeholder="Last name"
+            />
+          </div>
+          <Input long name="email" onChange={onChange} placeholder="Email" />
           <Input
+            long
+            name="username"
+            onChange={onChange}
+            placeholder="Username"
+          />
+          <Input
+            long
             name="password"
             onChange={onChange}
             placeholder="Password"
             password
           />
-          <div className={styles["login-button"]}>
+
+          <div className={styles["register-button"]}>
             <Button
               disabled={loading}
               loading={loading}
               type="submit"
               onClickHandler={onSubmit}
               variant="outlined"
-              text="Login"
+              text="Register"
             />
-            <div className={styles.register}>
-              Don't have an account?
+            <div className={styles.login}>
+              Already have an account?
               <span
-                onClick={() => navigate("/register")}
-                className={styles["register-btn"]}
+                onClick={() => navigate("/login")}
+                className={styles["login-btn"]}
               >
-                Register here!
+                Login here!
               </span>
             </div>
           </div>
@@ -106,4 +130,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

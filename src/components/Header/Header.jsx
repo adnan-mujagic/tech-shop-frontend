@@ -23,7 +23,7 @@ function Header() {
 
   return (
     <div className={styles.header}>
-      <div className={styles["header-logo"]} onClick={() => navigate("/main")}>
+      <div className={styles["header-logo"]} onClick={() => navigate("/")}>
         Logo
       </div>
       <div>
@@ -44,7 +44,10 @@ function Header() {
                       textAlign: "left",
                     }}
                     variant="outlined"
-                    onClick={() => localStorage.removeItem("session")}
+                    onClick={() => {
+                      localStorage.removeItem("session");
+                      setDrawerOpen(false);
+                    }}
                   >
                     <Logout sx={{ marginRight: "8px" }} /> Logout
                   </Button>

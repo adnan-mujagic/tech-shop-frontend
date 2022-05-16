@@ -3,6 +3,8 @@
 }
 
 .button {
+  background-color: var(--main-bg) !important;
+  color: var(--main-text) !important;
   box-shadow: none !important;
   text-transform: none !important;
   margin: 5px !important;
@@ -17,14 +19,25 @@
 .button-contained {
   @extend .button;
   &:hover {
-    background-color: rgb(91, 91, 172) !important;
+    background-color: var(--error) !important;
+    color: var(--main-text) !important;
   }
 }
 
 .button-outlined {
-  @extend .button;
+  border: 1px solid var(--main-text) !important;
+  color: var(--main-text) !important;
   &:hover {
-    border: 1px solid rgb(91, 91, 172) !important;
-    color: rgb(91, 91, 172);
+    border: 1px solid var(--error) !important;
+    color: var(--main-text) !important;
   }
+}
+
+.button-outlined-disabled {
+  border: 1px solid var(--gray) !important;
+  color: var(--gray) !important;
+}
+
+.disabled {
+  color: var(--error) !important;
 }

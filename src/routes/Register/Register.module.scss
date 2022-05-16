@@ -6,7 +6,15 @@
   margin-top: 100px;
 }
 
-.login-form {
+.form-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form {
+  max-width: 400px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -14,12 +22,12 @@
   justify-content: center;
 }
 
-.login-button {
+.register-button {
   text-align: center;
   margin-top: 10px !important;
 }
 
-.register {
+.login {
   margin-top: 10px;
   font-size: 12px;
   display: block;
@@ -27,10 +35,17 @@
   color: var(--main-text);
 }
 
-.register-btn {
+.login-btn {
   margin-left: 2px;
   &:hover {
     color: var(--error);
     cursor: pointer;
   }
+}
+
+.names {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
