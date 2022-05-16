@@ -2,7 +2,6 @@ import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button as MaterialUIButton } from "@mui/material";
 import styles from "./Button.module.scss";
-import { margin } from "@mui/system";
 
 function Button({ loading, variant, text, disabled, onClickHandler, type }) {
   return (
