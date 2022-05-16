@@ -107,6 +107,7 @@ function Register() {
 
           <div className={styles["register-button"]}>
             <Button
+              disabled={loading}
               loading={loading}
               type="submit"
               onClickHandler={onSubmit}

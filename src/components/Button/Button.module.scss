@@ -33,7 +33,11 @@
   }
 }
 
-.spinner {
-  height: 15px;
-  width: 15px;
+.button-outlined-disabled {
+  border: 1px solid var(--gray) !important;
+  color: var(--gray) !important;
+}
+
+.disabled {
+  color: var(--error) !important;
 }

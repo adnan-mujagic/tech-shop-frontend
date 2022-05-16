@@ -7,7 +7,11 @@ function Button({ loading, variant, text, disabled, onClickHandler, type }) {
   return (
     <div className={styles["button-wrapper"]}>
       <MaterialUIButton
-        className={styles[`button-${variant}`]}
+        className={
+          disabled
+            ? styles[`button-${variant}-disabled`]
+            : styles[`button-${variant}`]
+        }
         variant={variant}
         disabled={disabled}
         onClick={onClickHandler}

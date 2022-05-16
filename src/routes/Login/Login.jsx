@@ -79,6 +79,7 @@ function Login() {
           />
           <div className={styles["login-button"]}>
             <Button
+              disabled={loading}
               loading={loading}
               type="submit"
               onClickHandler={onSubmit}
