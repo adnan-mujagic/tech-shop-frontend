@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import Api from "./../../api/api.js";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -17,6 +18,7 @@ function Login() {
   const [formData, setFormData] = useState({ password: "", email: "" });
   const [hasError, setHasError] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setShowSnackbar(false);
@@ -85,7 +87,12 @@ function Login() {
             />
             <div className={styles.register}>
               Don't have an account.{" "}
-              <span className={styles["register-btn"]}>Register here!</span>
+              <span
+                onClick={() => navigate("/register")}
+                className={styles["register-btn"]}
+              >
+                Register here!
+              </span>
             </div>
           </div>
         </form>
