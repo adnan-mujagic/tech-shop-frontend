@@ -12,6 +12,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 function Login() {
+  const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [formData, setFormData] = useState({ password: "", email: "" });
   const [hasError, setHasError] = useState(false);
@@ -27,16 +28,18 @@ function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     Api.post("login", formData)
       .then((response) => {
+        setLoading(false);
         setHasError(false);
         setMessage("Login successful");
         setShowSnackbar(true);
         localStorage.setItem("token", response.token);
       })
       .catch((err) => {
-        console.log(err);
+        setLoading(false);
         setHasError(true);
         setMessage(err.message);
         setShowSnackbar(true);
@@ -74,11 +77,16 @@ function Login() {
           />
           <div className={styles["login-button"]}>
             <Button
+              loading={loading}
               type="submit"
               onClickHandler={onSubmit}
               variant="outlined"
               text="Login"
             />
+            <div className={styles.register}>
+              Don't have an account.{" "}
+              <span className={styles["register-btn"]}>Register here!</span>
+            </div>
           </div>
         </form>
       </div>

@@ -15,5 +15,21 @@
 }
 
 .login-button {
+  text-align: center;
   margin-top: 10px !important;
+}
+
+.register {
+  margin-top: 10px;
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  color: var(--main-text);
+}
+
+.register-btn {
+  &:hover {
+    color: var(--error);
+    cursor: pointer;
+  }
 }
