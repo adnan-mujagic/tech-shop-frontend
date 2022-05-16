@@ -4,15 +4,13 @@ import styles from "./Input.module.scss";
 
 function Input({ onChange, name, placeholder, password }) {
   return (
-    <div>
-      <input
-        onChange={onChange}
-        name={name}
-        type={password ? "password" : "text"}
-        className={styles.input}
-        placeholder={placeholder}
-      ></input>
-    </div>
+    <input
+      onChange={onChange}
+      name={name}
+      type={password ? "password" : "text"}
+      className={styles.input}
+      placeholder={placeholder}
+    ></input>
   );
 }
 

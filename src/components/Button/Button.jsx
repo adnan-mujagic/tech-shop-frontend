@@ -2,7 +2,7 @@ import React from "react";
 import { Button as MaterialUIButton } from "@mui/material";
 import styles from "./Button.module.scss";
 
-function Button({ variant, text, disabled, onClickHandler }) {
+function Button({ variant, text, disabled, onClickHandler, type }) {
   return (
     <div className={styles["button-wrapper"]}>
       <MaterialUIButton
@@ -10,6 +10,7 @@ function Button({ variant, text, disabled, onClickHandler }) {
         variant={variant}
         disabled={disabled}
         onClick={onClickHandler}
+        type={type}
       >
         {text}
       </MaterialUIButton>

@@ -25,7 +25,9 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+
     Api.post("login", formData)
       .then((response) => {
         setHasError(false);
@@ -61,17 +63,24 @@ function Login() {
       </Snackbar>
       <Navbar />
       <h1 className={styles.heading}>Login</h1>
-      <div className={styles["login-form"]}>
-        <Input name="email" onChange={onChange} placeholder="Email" />
-        <Input
-          name="password"
-          onChange={onChange}
-          placeholder="Password"
-          password
-        />
-        <div className={styles["login-button"]}>
-          <Button onClickHandler={onSubmit} variant="outlined" text="Login" />
-        </div>
+      <div>
+        <form className={styles["login-form"]} onSubmit={onSubmit}>
+          <Input name="email" onChange={onChange} placeholder="Email" />
+          <Input
+            name="password"
+            onChange={onChange}
+            placeholder="Password"
+            password
+          />
+          <div className={styles["login-button"]}>
+            <Button
+              type="submit"
+              onClickHandler={onSubmit}
+              variant="outlined"
+              text="Login"
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
