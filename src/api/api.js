@@ -8,14 +8,17 @@ const Api = {
     const url = "https://tech-shop-se-project.herokuapp.com/" + urlSuffix;
     console.log("Fetching from this url: " + url);
     try {
-      const response = await fetch(url, {
+      const options = {
         method,
         headers: {
           "Content-Type": "application/json",
           Authentication: getAccessToken(),
         },
-        body: JSON.stringify(body),
-      });
+      };
+      if (body) {
+        options["body"] = JSON.stringify(body);
+      }
+      const response = await fetch(url, options);
       const results = await response.json();
       return results;
     } catch (error) {
@@ -24,7 +27,7 @@ const Api = {
   },
 
   async get(urlSuffix) {
-    return await this.service(urlSuffix, "GET");
+    return await this.service(urlSuffix, null, "GET");
   },
 
   async post(urlSuffix, body) {

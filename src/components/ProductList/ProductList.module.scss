@@ -1,0 +1,15 @@
+.product-list {
+  min-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  flex-grow: 1;
+}
+
+.product-container {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  margin: 24px;
+}

@@ -1,9 +1,15 @@
 :root {
-  --main-bg: #020122;
-  --main-text: #eef8ff;
+  --main-bg: #0a1929;
+  --secondary-bg: #001e3c;
+  --border: #173a5e;
+  --main-text: #e4e4e4;
   --success: #78cece;
   --error: #f53d56;
   --warning: #f9c846;
+
+  --h1-fs: 27px;
+  --h2-fs: 20px;
+  --h3-fs: 18px;
 }
 
 body {
@@ -13,6 +19,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg);
 }
 
 code {

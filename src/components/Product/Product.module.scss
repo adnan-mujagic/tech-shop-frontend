@@ -1,0 +1,23 @@
+.product {
+  background-color: var(--secondary-bg);
+  padding: 24px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  flex: 0.5;
+}
+
+.details {
+  flex: 0.5;
+  margin-left: 24px;
+}
+
+.product-button-group {
+  margin-top: 24px;
+}
