@@ -7,23 +7,35 @@ const Api = {
   async service(urlSuffix, body, method) {
     const url = "https://tech-shop-se-project.herokuapp.com/" + urlSuffix;
     console.log("Fetching from this url: " + url);
-    try {
-      const options = {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-          Authentication: getAccessToken(),
-        },
-      };
-      if (body) {
-        options["body"] = JSON.stringify(body);
-      }
-      const response = await fetch(url, options);
-      const results = await response.json();
-      return results;
-    } catch (error) {
-      console.log(error);
+
+    const options = {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        Authentication: getAccessToken(),
+      },
+    };
+
+    if (body) {
+      options["body"] = JSON.stringify(body);
     }
+
+    const response = await fetch(url, options);
+    const results = await response.json();
+
+    if (response.ok) {
+      return results;
+    }
+
+    const responseError = {
+      type: "Error",
+      message: results.message || "Something went wrong",
+      code: response.status || "",
+    };
+
+    let error = new Error();
+    error = { ...error, ...responseError };
+    throw error;
   },
 
   async get(urlSuffix) {
