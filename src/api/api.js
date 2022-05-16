@@ -30,7 +30,7 @@ const Api = {
     const responseError = {
       type: "Error",
       message: results.message || "Something went wrong",
-      code: response.status || "",
+      code: response.status || "500",
     };
 
     let error = new Error();
