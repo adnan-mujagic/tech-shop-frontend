@@ -38,7 +38,11 @@ function Login() {
         setHasError(false);
         setMessage("Login successful");
         setShowSnackbar(true);
-        localStorage.setItem("token", response.token);
+        localStorage.setItem(
+          "session",
+          JSON.stringify({ token: response.token })
+        );
+        navigate("/dashboard");
       })
       .catch((err) => {
         setLoading(false);
