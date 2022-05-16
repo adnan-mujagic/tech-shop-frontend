@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Api from "../../api/api";
 import Product from "../Product/Product";
+import { CircularProgress } from "@mui/material";
 import styles from "./ProductList.module.scss";
+import constants from "../../api/constants";
 
 function ProductList() {
   const [page, setPage] = useState(1);
@@ -9,23 +11,30 @@ function ProductList() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
-  async function getProducts() {
-    setLoading(true);
-    const result = await Api.get(`products?page=${page}&pageSize=${pageSize}`);
-    if (result?.data) {
-      setProducts(result.data);
-    }
-    setLoading(false);
-  }
-
   useEffect(() => {
+    async function getProducts() {
+      setLoading(true);
+      const result = await Api.get(
+        `products?page=${page}&pageSize=${pageSize}`
+      );
+      if (result?.data) {
+        setProducts(result.data);
+      }
+      setLoading(false);
+    }
     getProducts();
-  }, [page]);
+  }, [page, pageSize]);
 
   return (
     <div className={styles["product-list"]}>
       {loading ? (
-        <div>Loading...</div>
+        <CircularProgress
+          sx={{
+            color: constants.colors.error,
+            marginTop: "24px",
+            marginLeft: "24px",
+          }}
+        />
       ) : (
         <div className={styles["product-container"]}>
           {products.map((product) => (

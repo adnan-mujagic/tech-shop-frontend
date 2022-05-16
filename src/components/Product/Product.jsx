@@ -1,11 +1,11 @@
-import { Button, ButtonGroup, Divider } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, ButtonGroup } from "@mui/material";
 import TextHeader from "../TextHeader";
-import styles from "./Product.module.scss";
 import ArticleIcon from "@mui/icons-material/Article";
 import date from "../../api/date";
 import shortenText from "../../api/shortenText";
-import { useNavigate } from "react-router-dom";
+import styles from "./Product.module.scss";
 
 function Product(product) {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ function Product(product) {
     date_added,
     last_restocked,
     price,
-    properties = undefined,
     quantity,
     images = ["https://cdn-icons-png.flaticon.com/512/1524/1524855.png"],
   } = product.product;
