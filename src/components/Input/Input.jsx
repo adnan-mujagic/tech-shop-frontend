@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./Input.module.scss";
 
-function Input({ onChange, name, placeholder, password }) {
+function Input({ onChange, name, placeholder, password, long }) {
   return (
     <input
       onChange={onChange}
       name={name}
       type={password ? "password" : "text"}
-      className={styles.input}
+      className={`${styles.input} ${long && styles.long}`}
       placeholder={placeholder}
     ></input>
   );

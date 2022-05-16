@@ -86,7 +86,7 @@ function Login() {
               text="Login"
             />
             <div className={styles.register}>
-              Don't have an account.{" "}
+              Don't have an account?
               <span
                 onClick={() => navigate("/register")}
                 className={styles["register-btn"]}
