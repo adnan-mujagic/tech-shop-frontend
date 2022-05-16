@@ -40,11 +40,11 @@ function Register() {
 
     Api.post("register", formData)
       .then((response) => {
-        // setLoading(false);
-        // setHasError(false);
-        // setMessage("Register successful");
-        // setShowSnackbar(true);
-        // localStorage.setItem("token", response.token);
+        setLoading(false);
+        setHasError(false);
+        setMessage(response.message);
+        setShowSnackbar(true);
+        localStorage.setItem("token", response.token);
       })
       .catch((err) => {
         setLoading(false);
@@ -90,7 +90,6 @@ function Register() {
               placeholder="Last name"
             />
           </div>
-
           <Input long name="email" onChange={onChange} placeholder="Email" />
           <Input
             long
