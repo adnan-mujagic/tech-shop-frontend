@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Api from "../../api/api";
 import Product from "../Product/Product";
 import { CircularProgress } from "@mui/material";
-import styles from "./ProductList.module.scss";
 import constants from "../../api/constants";
+import styles from "./ProductList.module.scss";
 
 function ProductList() {
   const [page, setPage] = useState(1);
