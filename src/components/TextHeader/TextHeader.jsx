@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../api/constants";
 
 function TextHeader({ type = "h1", text, color, textAlign, icon }) {
   const getStyle = () => {
@@ -8,9 +9,11 @@ function TextHeader({ type = "h1", text, color, textAlign, icon }) {
       alignItems: "center",
     };
     if (type === "h2") {
-      style.fontSize = "20px";
+      style.fontSize = constants.fontSizes.h2;
     } else if (type === "h3") {
-      style.fontSize = "18px";
+      style.fontSize = constants.fontSizes.h3;
+    } else if (type === "title") {
+      style.fontSize = constants.fontSizes.title;
     }
 
     if (color) {
