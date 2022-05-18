@@ -12,7 +12,7 @@ function CustomProperties({ properties }) {
           <strong>
             {property.charAt(0).toUpperCase() +
               property.slice(1).replace("_", " ")}
-          </strong>{" "}
+          </strong>
           :{" "}
           {properties[property].charAt(0).toUpperCase() +
             properties[property].slice(1)}

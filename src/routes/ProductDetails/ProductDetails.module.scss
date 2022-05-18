@@ -10,11 +10,6 @@
 
 .product-content {
   display: flex;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  flex-grow: 1;
-  padding: 24px 0;
 }
 
 .image-container {
@@ -40,5 +35,8 @@
 }
 
 .narrow {
-  height: 100%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px 0;
 }

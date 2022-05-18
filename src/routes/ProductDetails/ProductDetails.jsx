@@ -88,6 +88,9 @@ function ProductDetails() {
                 </ButtonGroup>
               </div>
             </div>
+            <div>
+              <TextHeader text={"Reviews"} padding />
+            </div>
           </div>
         )}
       </div>
