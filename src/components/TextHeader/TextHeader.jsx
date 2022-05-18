@@ -1,7 +1,15 @@
 import React from "react";
 import constants from "../../api/constants";
 
-function TextHeader({ type = "h1", text, color, textAlign, icon }) {
+function TextHeader({
+  type = "h1",
+  text,
+  color,
+  textAlign,
+  icon,
+  underlined,
+  padding,
+}) {
   const getStyle = () => {
     let style = {
       fontSize: "27px",
@@ -21,6 +29,13 @@ function TextHeader({ type = "h1", text, color, textAlign, icon }) {
     }
     if (textAlign) {
       style["textAlign"] = textAlign;
+    }
+    if (underlined) {
+      style["borderBottom"] = `1px solid ${constants.colors.border}`;
+      style["marginBottom"] = "24px";
+    }
+    if (padding) {
+      style["padding"] = "24px 0";
     }
     return style;
   };

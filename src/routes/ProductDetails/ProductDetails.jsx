@@ -10,6 +10,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import date from "../../api/date";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "./ProductDetails.module.scss";
+import CustomProperties from "../../components/CustomProperties";
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -61,6 +62,7 @@ function ProductDetails() {
                   text={"$ " + product.price}
                   type="h1"
                   color={constants.colors.success}
+                  padding
                 />
                 <TextHeader
                   text={product.description}
@@ -75,6 +77,7 @@ function ProductDetails() {
                   text={"Last restocked: " + date(product.last_restocked)}
                   type="h2"
                 />
+                <CustomProperties properties={product.properties} />
               </div>
             </div>
           </div>
