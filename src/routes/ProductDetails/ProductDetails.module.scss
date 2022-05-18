@@ -8,3 +8,24 @@
   flex: 1;
   padding: 24px;
 }
+
+.product-content {
+  display: flex;
+}
+
+.image-container {
+  aspect-ratio: 8/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-text);
+}
+
+.product-information {
+  flex: 0.6;
+  margin-left: 24px;
+}
+
+.carousel-wrapper {
+  flex: 0.4;
+}
