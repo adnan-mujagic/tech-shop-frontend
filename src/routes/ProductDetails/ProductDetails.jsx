@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { Button, ButtonGroup, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../../api/api";
@@ -70,6 +70,11 @@ function ProductDetails() {
                   icon={<ArticleIcon />}
                 />
                 <TextHeader
+                  text={"Quantity: " + product.quantity}
+                  type="h2"
+                  margin
+                />
+                <TextHeader
                   text={"Date added: " + date(product.date_added)}
                   type="h2"
                 />
@@ -78,6 +83,9 @@ function ProductDetails() {
                   type="h2"
                 />
                 <CustomProperties properties={product.properties} />
+                <ButtonGroup>
+                  <Button size="large">Purchase</Button>
+                </ButtonGroup>
               </div>
             </div>
           </div>

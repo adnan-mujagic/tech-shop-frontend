@@ -9,6 +9,7 @@ function TextHeader({
   icon,
   underlined,
   padding,
+  margin,
 }) {
   const getStyle = () => {
     let style = {
@@ -36,6 +37,9 @@ function TextHeader({
     }
     if (padding) {
       style["padding"] = "24px 0";
+    }
+    if (margin) {
+      style["marginTop"] = "24px";
     }
     return style;
   };
