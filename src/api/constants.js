@@ -9,6 +9,7 @@ const constants = {
     warning: "#f9c846",
   },
   fontSizes: {
+    title: "42px",
     h1: "27px",
     h2: "20px",
     h3: "18px",

@@ -24,7 +24,7 @@ function Header() {
   return (
     <div className={styles.header}>
       <div className={styles["header-logo"]} onClick={() => navigate("/")}>
-        Logo
+        Quiet Depths
       </div>
       <div>
         <div className={styles["menu-button"]} onClick={toggleDrawer(true)}>
