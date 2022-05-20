@@ -9,8 +9,9 @@ import constants from "./../../api/constants";
 import ArticleIcon from "@mui/icons-material/Article";
 import date from "../../api/date";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "./ProductDetails.module.scss";
 import CustomProperties from "../../components/CustomProperties";
+import { getProduct } from "../../api/products";
+import styles from "./ProductDetails.module.scss";
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -18,16 +19,15 @@ function ProductDetails() {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    async function getProduct() {
-      console.log(productId);
-      setLoading(true);
-      Api.get(`products/${productId}`)
-        .then((response) => setProduct(response.data))
-        .catch((err) => console.log(err))
-        .finally(setLoading(false));
-    }
-    getProduct();
+    setLoading(true);
+    getProduct({ productId })
+      .then((res) => {
+        setProduct(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(setLoading(false));
   }, [productId]);
+
   return (
     <div className={styles["product-details"]}>
       <Header />
