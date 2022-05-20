@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Api from "../../api/api";
 import Product from "../Product/Product";
 import { CircularProgress } from "@mui/material";
 import constants from "../../api/constants";
+import { getProducts } from "../../api/products";
 import styles from "./ProductList.module.scss";
 
 function ProductList() {
@@ -12,17 +12,19 @@ function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function getProducts() {
-      setLoading(true);
-      const result = await Api.get(
-        `products?page=${page}&pageSize=${pageSize}`
-      );
-      if (result?.data) {
-        setProducts(result.data);
-      }
-      setLoading(false);
-    }
-    getProducts();
+    setLoading(true);
+    getProducts({ page, pageSize })
+      .then((res) => {
+        console.log(res);
+        if (res?.data) {
+          setProducts(res.data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   }, [page, pageSize]);
 
   return (
