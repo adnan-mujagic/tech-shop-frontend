@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
+import { Button } from "@mui/material";
 import Input from "../../components/Input";
-import Button from "../../components/Button/Button";
 import Api from "./../../api/api.js";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -71,25 +71,34 @@ function Login() {
         </Alert>
       </Snackbar>
       <Navbar />
-      <h1 className={styles.heading}>Login</h1>
-      <div>
+
+      <div className={styles["login-container"]}>
         <form className={styles["login-form"]} onSubmit={onSubmit}>
-          <Input name="email" onChange={onChange} placeholder="Email" />
+          <h1 className={styles.heading}>Login</h1>
           <Input
-            name="password"
+            onChange={onChange}
+            placeholder="Email"
+            label="Email"
+            margin="normal"
+          />
+          <Input
             onChange={onChange}
             placeholder="Password"
+            label="Password"
             password
+            margin="normal"
           />
+
           <div className={styles["login-button"]}>
             <Button
-              disabled={loading}
-              loading={loading}
-              type="submit"
-              onClickHandler={onSubmit}
               variant="outlined"
-              text="Login"
-            />
+              type="submit"
+              onClick={onSubmit}
+              size="large"
+              disabled={loading}
+            >
+              Login
+            </Button>
             <div className={styles.register}>
               Don't have an account?
               <span

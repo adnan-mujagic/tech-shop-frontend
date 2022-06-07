@@ -7,6 +7,8 @@ const constants = {
     success: "#78cece",
     error: "#f53d56",
     warning: "#f9c846",
+    input: "rgba(25, 118, 210, 0.5)",
+    inputHover: "rgb(25, 118, 210)",
   },
   fontSizes: {
     title: "42px",
