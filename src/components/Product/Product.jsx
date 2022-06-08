@@ -53,10 +53,10 @@ function Product(product) {
       <Snackbar
         open={alertShown}
         autoHideDuration={message.length * 100}
-        onClose={(event) => setAlertShown(false)}
+        onClose={() => setAlertShown(false)}
       >
         <Alert
-          onClose={(event) => setAlertShown(false)}
+          onClose={() => setAlertShown(false)}
           severity={"success"}
           sx={{
             width: "100%",
@@ -91,7 +91,7 @@ function Product(product) {
           aria-label="outlined button group"
         >
           <Button onClick={() => handleClick()}>Show more</Button>
-          <Button onClick={(event) => handleBuy(event)}>Purchase</Button>
+          <Button onClick={(event) => handleBuy(event)}>Add to cart</Button>
         </ButtonGroup>
       </div>
     </div>
