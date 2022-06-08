@@ -75,7 +75,11 @@ function Register() {
       <Navbar />
 
       <div className={styles["form-container"]}>
-        <form className={styles["register-form"]} onSubmit={onSubmit}>
+        <form
+          autoComplete="off"
+          className={styles["register-form"]}
+          onSubmit={onSubmit}
+        >
           <h1 className={styles.heading}>Register</h1>
           <Input
             fullWidth

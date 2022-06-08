@@ -73,7 +73,11 @@ function Login() {
       <Navbar />
 
       <div className={styles["login-container"]}>
-        <form className={styles["login-form"]} onSubmit={onSubmit}>
+        <form
+          autoComplete="off"
+          className={styles["login-form"]}
+          onSubmit={onSubmit}
+        >
           <h1 className={styles.heading}>Login</h1>
           <Input
             onChange={onChange}
