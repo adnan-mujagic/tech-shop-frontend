@@ -24,6 +24,21 @@ function Product(product) {
     navigate(`/products/${_id}`);
   };
 
+  const handleBuy = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    if (cart[_id]) {
+      cart[_id] = { ...cart[_id], amount: cart[_id].amount + 1 };
+    } else {
+      cart[_id] = {
+        name,
+        price,
+        image: images[0],
+        amount: 1,
+      };
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
   return (
     <div className={styles["product"]}>
       <div
@@ -51,7 +66,7 @@ function Product(product) {
           aria-label="outlined button group"
         >
           <Button onClick={() => handleClick()}>Show more</Button>
-          <Button>Purchase</Button>
+          <Button onClick={(event) => handleBuy(event)}>Purchase</Button>
         </ButtonGroup>
       </div>
     </div>
