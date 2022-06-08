@@ -31,9 +31,18 @@ const CustomInput = styled(TextField)({
   },
 });
 
-function Input({ label, password, placeholder, onChange, margin, fullWidth }) {
+function Input({
+  name,
+  label,
+  password,
+  placeholder,
+  onChange,
+  margin,
+  fullWidth,
+}) {
   return (
     <CustomInput
+      name={name}
       fullWidth={fullWidth}
       onChange={onChange}
       margin={margin}
