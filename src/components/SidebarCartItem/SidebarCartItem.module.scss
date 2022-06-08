@@ -1,0 +1,22 @@
+.sidebar-cart-item {
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--secondary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.sidebar-cart-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-cart-item-image {
+  height: 64px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid lightgray;
+  margin-right: 16px;
+}

@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Button, Drawer, IconButton, List, ListItem } from "@mui/material";
 import { ChevronRight, Login, Logout } from "@mui/icons-material";
 import styles from "./Header.module.scss";
+import SidebarCart from "../SidebarCart";
 
 function Header() {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ function Header() {
                 )}
               </ListItem>
             </List>
+            <SidebarCart />
           </div>
         </Drawer>
       </div>
