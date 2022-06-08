@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button";
+import { Button, ButtonGroup } from "@mui/material";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
@@ -12,16 +12,10 @@ function Navbar() {
           Logo
         </div>
         <div className={styles.buttons}>
-          <Button
-            variant="contained"
-            text="Login"
-            onClickHandler={() => navigate("/login")}
-          />
-          <Button
-            onClickHandler={() => navigate("/register")}
-            variant="outlined"
-            text="Register"
-          />
+          <ButtonGroup variant="outlined" aria-label="outlined button group">
+            <Button onClick={() => navigate("/login")}>Login</Button>
+            <Button onClick={() => navigate("/register")}>Register</Button>
+          </ButtonGroup>
         </div>
       </div>
     </div>

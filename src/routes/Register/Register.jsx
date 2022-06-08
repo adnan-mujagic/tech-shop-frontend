@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
+import { Button } from "@mui/material";
 import Input from "../../components/Input";
-import Button from "../../components/Button/Button";
 import Api from "./../../api/api.js";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -73,47 +73,62 @@ function Register() {
         </Alert>
       </Snackbar>
       <Navbar />
-      <h1 className={styles.heading}>Register</h1>
+
       <div className={styles["form-container"]}>
         <form className={styles["register-form"]} onSubmit={onSubmit}>
-          <div className={styles.names}>
-            <Input
-              long
-              name="first_name"
-              onChange={onChange}
-              placeholder="First name"
-            />
-            <Input
-              long
-              name="last_name"
-              onChange={onChange}
-              placeholder="Last name"
-            />
-          </div>
-          <Input long name="email" onChange={onChange} placeholder="Email" />
+          <h1 className={styles.heading}>Register</h1>
           <Input
-            long
+            fullWidth
+            margin="dense"
+            name="first_name"
+            onChange={onChange}
+            label="First name"
+            placeholder="First name"
+          />
+          <Input
+            fullWidth
+            margin="dense"
+            name="last_name"
+            onChange={onChange}
+            label="Last name"
+            placeholder="Last name"
+          />
+          <Input
+            fullWidth
+            margin="dense"
+            name="email"
+            onChange={onChange}
+            label="Email"
+            placeholder="Email"
+          />
+          <Input
+            fullWidth
+            margin="dense"
             name="username"
             onChange={onChange}
+            label="Username"
             placeholder="Username"
           />
           <Input
-            long
+            fullWidth
+            margin="dense"
             name="password"
             onChange={onChange}
+            label="Password"
             placeholder="Password"
             password
           />
 
           <div className={styles["register-button"]}>
             <Button
-              disabled={loading}
-              loading={loading}
-              type="submit"
-              onClickHandler={onSubmit}
               variant="outlined"
-              text="Register"
-            />
+              disabled={loading}
+              type="submit"
+              onClick={onSubmit}
+            >
+              Register
+            </Button>
+
             <div className={styles.login}>
               Already have an account?
               <span

@@ -1,7 +1,6 @@
 import { Button, ButtonGroup, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Api from "../../api/api";
 import Header from "./../../components/Header";
 import { Carousel } from "react-responsive-carousel";
 import TextHeader from "./../../components/TextHeader";
@@ -51,7 +50,7 @@ function ProductDetails() {
                 >
                   {product.images.map((source) => (
                     <div className={styles["image-container"]}>
-                      <img src={source} />
+                      <img src={source} alt="product" />
                     </div>
                   ))}
                 </Carousel>

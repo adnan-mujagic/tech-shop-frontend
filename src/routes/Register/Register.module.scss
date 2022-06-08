@@ -1,20 +1,24 @@
 .heading {
   color: var(--main-text);
   text-align: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 50px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .form-container {
-  width: 100vw;
+  margin-inline: auto;
+  margin-top: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--secondary-bg);
+  width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .register-form {
-  max-width: 400px;
+  width: 300px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -28,7 +32,8 @@
 }
 
 .login {
-  margin-top: 10px;
+  margin-bottom: 16px;
+  margin-top: 16px;
   font-size: 12px;
   display: block;
   text-align: center;
@@ -38,14 +43,7 @@
 .login-btn {
   margin-left: 2px;
   &:hover {
-    color: var(--error);
+    color: var(--input);
     cursor: pointer;
   }
-}
-
-.names {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
