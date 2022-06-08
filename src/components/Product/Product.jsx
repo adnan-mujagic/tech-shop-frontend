@@ -27,11 +27,11 @@ function Product(product) {
     images = ["https://cdn-icons-png.flaticon.com/512/1524/1524855.png"],
   } = product.product;
 
-  const handleClick = () => {
+  const handleShowMore = () => {
     navigate(`/products/${_id}`);
   };
 
-  const handleBuy = () => {
+  const handleAddToCart = () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || {};
     if (cart[_id]) {
       cart[_id] = { ...cart[_id], amount: cart[_id].amount + 1 };
@@ -90,8 +90,8 @@ function Product(product) {
           variant="outlined"
           aria-label="outlined button group"
         >
-          <Button onClick={() => handleClick()}>Show more</Button>
-          <Button onClick={(event) => handleBuy(event)}>Add to cart</Button>
+          <Button onClick={() => handleShowMore()}>Show more</Button>
+          <Button onClick={() => handleAddToCart()}>Add to cart</Button>
         </ButtonGroup>
       </div>
     </div>

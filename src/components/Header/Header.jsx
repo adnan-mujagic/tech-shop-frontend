@@ -22,17 +22,6 @@ function Header() {
 
   const isLoggedIn = () => localStorage.getItem("session") !== null;
 
-  const handleRemove = (event, item) => {
-    console.log("Clicked");
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (item.amount === 1) {
-      delete cart[item._id];
-    } else {
-      cart[item._id] = { ...cart[item._id], amount: item.amount - 1 };
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-  };
-
   return (
     <div className={styles.header}>
       <div className={styles["header-logo"]} onClick={() => navigate("/")}>
