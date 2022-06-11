@@ -42,7 +42,8 @@ function ProductDetails() {
 
     canAddReview({ productId })
       .then((res) => {
-        setCanReview(res.data?.canReview);
+        console.log(res);
+        setCanReview(res.canReview);
       })
       .catch((err) => {
         console.log(err);
