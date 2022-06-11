@@ -9,13 +9,21 @@ import ArticleIcon from "@mui/icons-material/Article";
 import date from "../../api/date";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CustomProperties from "../../components/CustomProperties";
-import { getProduct } from "../../api/products";
+import {
+  getProduct,
+  getProductReviews,
+  canAddReview,
+} from "../../api/products";
+import Review from "./Review";
+import AddReviewForm from "./AddReviewForm";
 import styles from "./ProductDetails.module.scss";
 
 function ProductDetails() {
   const { productId } = useParams();
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [canReview, setCanReview] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +33,21 @@ function ProductDetails() {
       })
       .catch((err) => console.log(err))
       .finally(setLoading(false));
-  }, [productId]);
+
+    getProductReviews({ productId })
+      .then((res) => {
+        setReviews(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    canAddReview({ productId })
+      .then((res) => {
+        setCanReview(res.canReview);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [productId, canReview]);
 
   return (
     <div className={styles["product-details"]}>
@@ -89,6 +111,16 @@ function ProductDetails() {
             </div>
             <div>
               <TextHeader text={"Reviews"} padding />
+              {canReview && <AddReviewForm product_id={product._id} />}
+              <div className={styles["reviews-container"]}>
+                {reviews.length > 0 ? (
+                  reviews.map((review, idx) => (
+                    <Review key={idx} review={review} />
+                  ))
+                ) : (
+                  <div>This item currently has no reviews</div>
+                )}
+              </div>
             </div>
           </div>
         )}
