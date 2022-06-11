@@ -9,13 +9,15 @@ import ArticleIcon from "@mui/icons-material/Article";
 import date from "../../api/date";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CustomProperties from "../../components/CustomProperties";
-import { getProduct } from "../../api/products";
+import { getProduct, getProductReviews } from "../../api/products";
+import Review from "./Review";
 import styles from "./ProductDetails.module.scss";
 
 function ProductDetails() {
   const { productId } = useParams();
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +27,12 @@ function ProductDetails() {
       })
       .catch((err) => console.log(err))
       .finally(setLoading(false));
+
+    getProductReviews({ productId })
+      .then((res) => {
+        setReviews(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [productId]);
 
   return (
@@ -89,6 +97,15 @@ function ProductDetails() {
             </div>
             <div>
               <TextHeader text={"Reviews"} padding />
+              <div className={styles["reviews-container"]}>
+                {reviews.length > 0 ? (
+                  reviews.map((review, idx) => (
+                    <Review key={idx} review={review} />
+                  ))
+                ) : (
+                  <div>This item currently has no reviews</div>
+                )}
+              </div>
             </div>
           </div>
         )}

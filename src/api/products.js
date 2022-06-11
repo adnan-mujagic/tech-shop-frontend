@@ -9,3 +9,7 @@ export const getProducts = ({ page, pageSize }) => {
 export const getProduct = ({ productId }) => {
   return Api.get(`products/${productId}`).then((res) => res);
 };
+
+export const getProductReviews = ({ productId }) => {
+  return Api.get(`reviews/${productId}`).then((res) => res);
+};
