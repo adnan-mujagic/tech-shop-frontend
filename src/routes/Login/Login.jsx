@@ -42,7 +42,7 @@ function Login() {
           "session",
           JSON.stringify({ token: response.token })
         );
-        navigate("/dashboard");
+        navigate("/");
       })
       .catch((err) => {
         setLoading(false);
@@ -76,12 +76,14 @@ function Login() {
         <form className={styles["login-form"]} onSubmit={onSubmit}>
           <h1 className={styles.heading}>Login</h1>
           <Input
+            name="email"
             onChange={onChange}
             placeholder="Email"
             label="Email"
             margin="normal"
           />
           <Input
+            name="password"
             onChange={onChange}
             placeholder="Password"
             label="Password"

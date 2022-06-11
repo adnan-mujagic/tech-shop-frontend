@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, Snackbar } from "@mui/material";
 import TextHeader from "../TextHeader";
 import ArticleIcon from "@mui/icons-material/Article";
+import MuiAlert from "@mui/material/Alert";
 import date from "../../api/date";
 import shortenText from "../../api/shortenText";
 import styles from "./Product.module.scss";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 function Product(product) {
+  const [message, setMessage] = useState("");
+  const [alertShown, setAlertShown] = useState(false);
   const navigate = useNavigate();
   const {
     _id,
@@ -20,12 +27,45 @@ function Product(product) {
     images = ["https://cdn-icons-png.flaticon.com/512/1524/1524855.png"],
   } = product.product;
 
-  const handleClick = () => {
+  const handleShowMore = () => {
     navigate(`/products/${_id}`);
+  };
+
+  const handleAddToCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    if (cart[_id]) {
+      cart[_id] = { ...cart[_id], amount: cart[_id].amount + 1 };
+    } else {
+      cart[_id] = {
+        name,
+        price,
+        image: images[0],
+        amount: 1,
+      };
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setMessage(cart[_id].name + " has been added to your cart");
+    setAlertShown(true);
   };
 
   return (
     <div className={styles["product"]}>
+      <Snackbar
+        open={alertShown}
+        autoHideDuration={message.length * 100}
+        onClose={() => setAlertShown(false)}
+      >
+        <Alert
+          onClose={() => setAlertShown(false)}
+          severity={"success"}
+          sx={{
+            width: "100%",
+            background: "#78cece",
+          }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
       <div
         className={styles["image-container"]}
         style={{
@@ -50,8 +90,8 @@ function Product(product) {
           variant="outlined"
           aria-label="outlined button group"
         >
-          <Button onClick={() => handleClick()}>Show more</Button>
-          <Button>Purchase</Button>
+          <Button onClick={() => handleShowMore()}>Show more</Button>
+          <Button onClick={() => handleAddToCart()}>Add to cart</Button>
         </ButtonGroup>
       </div>
     </div>
