@@ -22,7 +22,12 @@ function Review({ review }) {
       <div className={styles.name}>
         {review.user.first_name} {review.user.last_name}
       </div>
-      <StyledRating name="read-only" value={review.rating} readOnly />
+      <StyledRating
+        name="read-only"
+        value={review.rating}
+        readOnly
+        precision={0.5}
+      />
       <div className={styles.text}>{review.text}</div>
     </div>
   );

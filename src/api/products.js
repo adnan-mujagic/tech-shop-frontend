@@ -13,3 +13,7 @@ export const getProduct = ({ productId }) => {
 export const getProductReviews = ({ productId }) => {
   return Api.get(`reviews/${productId}`).then((res) => res);
 };
+
+export const addProductReview = (payload) => {
+  return Api.post(`reviews`, payload).then((res) => res);
+};

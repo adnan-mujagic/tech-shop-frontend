@@ -11,6 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CustomProperties from "../../components/CustomProperties";
 import { getProduct, getProductReviews } from "../../api/products";
 import Review from "./Review";
+import AddReviewForm from "./AddReviewForm";
 import styles from "./ProductDetails.module.scss";
 
 function ProductDetails() {
@@ -97,6 +98,7 @@ function ProductDetails() {
             </div>
             <div>
               <TextHeader text={"Reviews"} padding />
+              <AddReviewForm product_id={product._id} />
               <div className={styles["reviews-container"]}>
                 {reviews.length > 0 ? (
                   reviews.map((review, idx) => (
