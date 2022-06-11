@@ -39,19 +39,40 @@ function Header() {
             <List>
               <ListItem>
                 {isLoggedIn() ? (
-                  <Button
-                    sx={{
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
                       width: "100%",
-                      textAlign: "left",
-                    }}
-                    variant="outlined"
-                    onClick={() => {
-                      localStorage.removeItem("session");
-                      setDrawerOpen(false);
                     }}
                   >
-                    <Logout sx={{ marginRight: "8px" }} /> Logout
-                  </Button>
+                    <Button
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        marginBottom: "16px",
+                      }}
+                      variant="outlined"
+                      onClick={() => {
+                        navigate("/orderHistory");
+                      }}
+                    >
+                      Order History
+                    </Button>
+                    <Button
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                      }}
+                      variant="outlined"
+                      onClick={() => {
+                        localStorage.removeItem("session");
+                        setDrawerOpen(false);
+                      }}
+                    >
+                      <Logout sx={{ marginRight: "8px" }} /> Logout
+                    </Button>
+                  </div>
                 ) : (
                   <Button
                     sx={{
