@@ -1,6 +1,6 @@
 const getAccessToken = () =>
   localStorage.getItem("session") !== null
-    ? JSON.parse(localStorage.getItem("session")).accessToken
+    ? JSON.parse(localStorage.getItem("session")).token
     : "";
 
 const Api = {
@@ -12,7 +12,7 @@ const Api = {
       method,
       headers: {
         "Content-Type": "application/json",
-        Authentication: getAccessToken(),
+        Authorization: getAccessToken(),
       },
     };
 

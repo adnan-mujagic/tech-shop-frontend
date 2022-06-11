@@ -17,3 +17,7 @@ export const getProductReviews = ({ productId }) => {
 export const addProductReview = (payload) => {
   return Api.post(`reviews`, payload).then((res) => res);
 };
+
+export const canAddReview = ({ productId }) => {
+  return Api.get(`orders/canReview/${productId}`).then((res) => res);
+};
