@@ -5,6 +5,7 @@ import Main from "./routes/Main";
 import ProductDetails from "./routes/ProductDetails";
 
 import "./App.scss";
+import OrderHistory from "./routes/OrderHistory";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         {/* <Route path="/dashboard" element={<Main />} /> */}
         <Route path="/register" element={<Register />} />
+        <Route path="orderHistory" element={<OrderHistory />} />
       </Routes>
     </div>
   );
