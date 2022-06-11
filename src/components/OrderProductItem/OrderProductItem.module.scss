@@ -1,0 +1,21 @@
+.order-product-item {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-product-item-left,
+.order-product-item-right {
+  display: flex;
+  align-items: center;
+}
+
+.order-product-item-image {
+  height: 64px;
+  aspect-ratio: 1 / 1;
+  margin-right: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
