@@ -19,4 +19,8 @@
     width: 100%;
     border: none;
   }
+
+  .product-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
