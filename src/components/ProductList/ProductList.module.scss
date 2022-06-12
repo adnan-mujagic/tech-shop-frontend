@@ -13,3 +13,10 @@
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   margin: 24px;
 }
+
+@media screen and (max-width: 780px) {
+  .product-list {
+    width: 100%;
+    border: none;
+  }
+}
