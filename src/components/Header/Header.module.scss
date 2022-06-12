@@ -22,3 +22,9 @@
   height: 100%;
   padding: 24px;
 }
+
+@media screen and (max-width: 780px) {
+  .drawer-content {
+    width: 270px;
+  }
+}

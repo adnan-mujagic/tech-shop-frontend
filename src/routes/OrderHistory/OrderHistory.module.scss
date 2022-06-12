@@ -5,5 +5,10 @@
   min-height: 100vh;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 0 16px;
+  padding: 0 16px 8px 16px;
+}
+@media screen and (max-width: 780px) {
+  .order-history {
+    border: none;
+  }
 }

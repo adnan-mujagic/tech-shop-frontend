@@ -40,3 +40,14 @@
   margin-right: auto;
   padding: 24px 0;
 }
+
+@media screen and (max-width: 780px) {
+  .product-content {
+    flex-direction: column;
+  }
+
+  .product-information {
+    margin-left: 0;
+    margin-top: 24px;
+  }
+}
