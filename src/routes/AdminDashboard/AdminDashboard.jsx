@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { admin } from "../../api/admin";
 import AddProductForm from "../../components/AddProductForm";
 import Header from "../../components/Header";
+import LowestInStock from "../../components/LowestInStock";
+import MostSold from "../../components/MostSold";
 import styles from "./AdminDashboard.module.scss";
 
 function AdminDashboard() {
@@ -29,6 +31,8 @@ function AdminDashboard() {
       {isAdmin && !loading && (
         <div className={styles["admin-dashboard-content"]}>
           <AddProductForm />
+          <LowestInStock />
+          <MostSold />
         </div>
       )}
       {loading && <CircularProgress />}
