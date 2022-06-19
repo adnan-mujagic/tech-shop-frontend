@@ -39,6 +39,7 @@ function Input({
   onChange,
   margin,
   fullWidth,
+  value,
 }) {
   return (
     <CustomInput
@@ -49,6 +50,7 @@ function Input({
       type={password ? "password" : "text"}
       label={label}
       placeholder={placeholder}
+      value={value}
       InputLabelProps={{
         style: {
           textOverflow: "ellipsis",

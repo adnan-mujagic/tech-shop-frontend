@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import GridViewIcon from "@mui/icons-material/GridView";
+import ViewListIcon from "@mui/icons-material/ViewList";
 import { Button, Drawer, IconButton, List, ListItem } from "@mui/material";
 import { ChevronRight, Login, Logout } from "@mui/icons-material";
 import styles from "./Header.module.scss";
 import SidebarCart from "../SidebarCart";
+import { admin } from "../../api/admin";
+import { styled } from "@mui/material/styles";
+
+const buttonStyle = {
+  marginBottom: "16px",
+};
+
+const DrawerButton = styled(Button)({
+  justifyContent: "flex-start",
+  marginBottom: "16px",
+});
 
 function Header() {
   const navigate = useNavigate();
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    admin().then((res) => {
+      setIsAdmin(!!res?.admin);
+    });
+  }, []);
 
   const toggleDrawer = (shouldOpen) => (event) => {
     if (
@@ -25,7 +45,7 @@ function Header() {
   return (
     <div className={styles.header}>
       <div className={styles["header-logo"]} onClick={() => navigate("/")}>
-        Quiet Depths
+        Tech Shop
       </div>
       <div>
         <div className={styles["menu-button"]} onClick={toggleDrawer(true)}>
@@ -46,44 +66,57 @@ function Header() {
                       width: "100%",
                     }}
                   >
-                    <Button
-                      style={{
-                        width: "100%",
-                        textAlign: "left",
-                        marginBottom: "16px",
-                      }}
+                    <DrawerButton
                       variant="outlined"
+                      style={buttonStyle}
                       onClick={() => {
                         navigate("/orderHistory");
                       }}
                     >
+                      <ViewListIcon />
                       Order History
-                    </Button>
-                    <Button
-                      style={{
-                        width: "100%",
-                        textAlign: "left",
-                      }}
+                    </DrawerButton>
+                    {isAdmin && (
+                      <DrawerButton
+                        variant="outlined"
+                        style={buttonStyle}
+                        onClick={() => {
+                          navigate("/admin");
+                        }}
+                      >
+                        <GridViewIcon />
+                        Admin Dashboard
+                      </DrawerButton>
+                    )}
+                    <DrawerButton
                       variant="outlined"
+                      style={buttonStyle}
                       onClick={() => {
                         localStorage.removeItem("session");
                         setDrawerOpen(false);
                       }}
                     >
-                      <Logout sx={{ marginRight: "8px" }} /> Logout
-                    </Button>
+                      <Logout />
+                      Logout
+                    </DrawerButton>
                   </div>
                 ) : (
-                  <Button
-                    sx={{
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
                       width: "100%",
-                      textAlign: "left",
                     }}
-                    variant="outlined"
-                    onClick={() => navigate("/login")}
                   >
-                    <Login sx={{ marginRight: "8px" }} /> Log In
-                  </Button>
+                    <DrawerButton
+                      variant="outlined"
+                      style={buttonStyle}
+                      onClick={() => navigate("/login")}
+                    >
+                      <Login />
+                      Log In
+                    </DrawerButton>
+                  </div>
                 )}
               </ListItem>
             </List>
