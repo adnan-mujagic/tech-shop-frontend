@@ -11,6 +11,7 @@ import TextHeader from "../TextHeader";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import styles from "./MostSold.module.scss";
+import constants from "../../api/constants";
 
 function MostSold() {
   const [products, setProducts] = useState(null);
@@ -36,7 +37,7 @@ function MostSold() {
     <div>
       {products != null ? (
         <div className={styles["most-sold"]}>
-          <TextHeader type="h2" underlined text={"Most sold items"} />
+          <TextHeader underlined text={"Most sold items"} />
           <CustomTable>
             <TableHead>
               <CustomTableCell>Place</CustomTableCell>
@@ -50,7 +51,21 @@ function MostSold() {
                   <TableRow>
                     <CustomTableCell>{getPlace(idx)}</CustomTableCell>
                     <CustomTableCell>{product.product._id}</CustomTableCell>
-                    <CustomTableCell>{product.product.name}</CustomTableCell>
+                    <CustomTableCell>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img
+                          src={product.product.images[0]}
+                          style={{
+                            height: "48px",
+                            aspectRatio: "1 / 1",
+                            border: "1px solid " + constants.colors.border,
+                            marginRight: "8px",
+                            borderRadius: "4px",
+                          }}
+                        />
+                        {product.product.name}
+                      </div>
+                    </CustomTableCell>
                     <CustomTableCell>{product.amount}</CustomTableCell>
                   </TableRow>
                 );

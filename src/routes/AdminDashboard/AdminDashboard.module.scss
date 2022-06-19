@@ -11,3 +11,9 @@
   min-height: calc(100vh - 32px);
   padding: 16px;
 }
+
+@media screen and (max-width: 800px) {
+  .admin-dashboard-content {
+    border: none !important;
+  }
+}

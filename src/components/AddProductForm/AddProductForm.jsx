@@ -124,7 +124,7 @@ function AddProductForm() {
               label="Quantity"
               placeholder="Quantity"
             />
-            <TextHeader text="Images" />
+            <TextHeader type="h2" text="Images" />
             <div className={styles["current-images"]}>
               {formData.images.map((imageUrl, idx) => (
                 <div className={styles["url-container"]}>
@@ -155,7 +155,7 @@ function AddProductForm() {
                 Add image
               </Button>
             </div>
-            <TextHeader text="Custom properties" />
+            <TextHeader type="h2" text="Custom properties" />
             {Object.keys(formData.properties).length > 0 && (
               <div className={styles["custom-properties-container"]}>
                 {Object.keys(formData.properties).map((property) => {

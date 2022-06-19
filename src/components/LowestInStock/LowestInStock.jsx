@@ -34,7 +34,7 @@ function LowestInStock() {
 
   return (
     <div className={styles["lowest-in-stock"]}>
-      <TextHeader text={"Lowest in stock"} underlined type="h2" />
+      <TextHeader text={"Lowest in stock"} underlined type="h1" />
       {products ? (
         <div>
           <CustomTable>
@@ -48,7 +48,21 @@ function LowestInStock() {
                 return (
                   <TableRow>
                     <CustomTableCell>{product._id}</CustomTableCell>
-                    <CustomTableCell>{product.name}</CustomTableCell>
+                    <CustomTableCell>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img
+                          src={product.images[0]}
+                          style={{
+                            height: "48px",
+                            aspectRatio: "1 / 1",
+                            border: "1px solid " + constants.colors.border,
+                            marginRight: "8px",
+                            borderRadius: "4px",
+                          }}
+                        />
+                        {product.name}
+                      </div>
+                    </CustomTableCell>
                     <CustomTableCell>{product.quantity}</CustomTableCell>
                   </TableRow>
                 );
