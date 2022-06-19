@@ -8,15 +8,16 @@ import { Button } from "@mui/material";
 import Input from "../Input";
 
 function AddProductForm() {
-  const [inputFormOpen, setInputFormOpen] = useState(false);
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: "",
     description: "",
     images: [],
-    price: null,
-    quantity: null,
+    price: "",
+    quantity: "",
     properties: {},
-  });
+  };
+  const [inputFormOpen, setInputFormOpen] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
 
   const [customPropertyKey, setCustomPropertyKey] = useState("");
   const [customPropertyValue, setCustomPropertyValue] = useState("");
@@ -44,6 +45,10 @@ function AddProductForm() {
     addProduct(formData)
       .then((res) => {
         console.log(res.message);
+        setFormData(initialFormData);
+        setImageUrl("");
+        setCustomPropertyKey("");
+        setCustomPropertyValue("");
       })
       .catch((err) => {
         console.log(err);
@@ -77,8 +82,6 @@ function AddProductForm() {
     setCustomPropertyValue("");
   };
 
-  console.log(formData);
-
   return (
     <div className={styles["add-product-form"]}>
       <div>
@@ -98,6 +101,7 @@ function AddProductForm() {
               name="name"
               onChange={onChange}
               label="Product name"
+              value={formData.name}
               placeholder="Product name"
             />
             <Input
@@ -106,6 +110,7 @@ function AddProductForm() {
               name="description"
               onChange={onChange}
               label="Description"
+              value={formData.description}
               placeholder="Description"
             />
             <Input
@@ -114,6 +119,7 @@ function AddProductForm() {
               name="price"
               onChange={onChange}
               label="Price"
+              value={formData.price}
               placeholder="Price"
             />
             <Input
@@ -122,6 +128,7 @@ function AddProductForm() {
               name="quantity"
               onChange={onChange}
               label="Quantity"
+              value={formData.quantity}
               placeholder="Quantity"
             />
             <TextHeader type="h2" text="Images" />
