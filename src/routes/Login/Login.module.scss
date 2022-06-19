@@ -45,3 +45,12 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .login-container {
+    min-width: 280px;
+  }
+  .login-form {
+    width: 280px;
+  }
+}

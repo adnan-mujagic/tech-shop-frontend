@@ -47,3 +47,13 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .form-container {
+    width: 280px;
+  }
+
+  .register-form {
+    width: 248px;
+  }
+}

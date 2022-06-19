@@ -21,3 +21,19 @@
 .product-button-group {
   margin-top: 24px;
 }
+
+@media screen and (max-width: 780px) {
+  .product {
+    flex-direction: column;
+  }
+
+  .image-container {
+    flex: none;
+  }
+
+  .details {
+    margin-left: 0;
+    margin-top: 24px;
+    flex: none;
+  }
+}
