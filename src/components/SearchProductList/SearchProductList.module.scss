@@ -12,4 +12,9 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--secondary-bg);
+  }
 }

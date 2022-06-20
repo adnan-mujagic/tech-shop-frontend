@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Button,
-  ClickAwayListener,
   Drawer,
   IconButton,
   List,
@@ -44,9 +43,7 @@ function Header() {
     setSearch(e.target.value);
     if (e.target.value.length > 2) {
       getProducts({ page: 1, pageSize: 10, search: search }).then((res) => {
-        let options = res.data;
-        options.forEach((option) => (option["label"] = option["name"]));
-        setProducts(options);
+        setProducts(res.data);
       });
     } else {
       setProducts([]);
@@ -69,11 +66,6 @@ function Header() {
     setDrawerOpen(shouldOpen);
   };
 
-  const handleClickAway = () => {
-    console.log("HELLLOOOSFD");
-    setSearchFocused(false);
-  };
-
   const isLoggedIn = () => localStorage.getItem("session") !== null;
 
   return (
@@ -83,22 +75,19 @@ function Header() {
       </div>
       <div className={styles["header-right"]}>
         <div>
-          <ClickAwayListener
-            onClickAway={handleClickAway}
-            children={
-              <Input
-                value={search}
-                onFocus={() => setSearchFocused(true)}
-                onChange={handleChange}
-              />
-            }
-          ></ClickAwayListener>
+          <Input
+            value={search}
+            placeholder="Search"
+            onFocus={() => setSearchFocused(true)}
+            onChange={handleChange}
+          />
           {products.length > 0 && searchFocused && (
             <SearchProductList products={products} />
           )}
         </div>
         <div className={styles["menu-button"]} onClick={toggleDrawer(true)}>
-          <MenuIcon style={{ marginRight: "10px" }} /> Menu
+          <MenuIcon style={{ marginRight: "10px" }} />{" "}
+          <div className={styles["menu-text"]}>Menu</div>
         </div>
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
           <div className={styles["drawer-content"]}>
