@@ -40,6 +40,7 @@ function Input({
   margin,
   fullWidth,
   value,
+  onFocus,
 }) {
   return (
     <CustomInput
@@ -51,6 +52,7 @@ function Input({
       label={label}
       placeholder={placeholder}
       value={value}
+      onFocus={onFocus}
       InputLabelProps={{
         style: {
           textOverflow: "ellipsis",

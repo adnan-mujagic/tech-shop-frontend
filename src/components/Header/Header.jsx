@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
-  Autocomplete,
   Button,
+  ClickAwayListener,
   Drawer,
   IconButton,
   List,
   ListItem,
+  TextField,
 } from "@mui/material";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ViewListIcon from "@mui/icons-material/ViewList";
@@ -17,6 +18,9 @@ import styles from "./Header.module.scss";
 import SidebarCart from "../SidebarCart";
 import { admin } from "../../api/admin";
 import { styled } from "@mui/material/styles";
+import constants from "../../api/constants";
+import Input from "../Input/Input";
+import SearchProductList from "../SearchProductList";
 
 const buttonStyle = {
   marginBottom: "16px",
@@ -32,14 +36,20 @@ function Header() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const handleChange = () => {
-    if (search.length > 3) {
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+    if (e.target.value.length > 2) {
       getProducts({ page: 1, pageSize: 10, search: search }).then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
+        let options = res.data;
+        options.forEach((option) => (option["label"] = option["name"]));
+        setProducts(options);
       });
+    } else {
+      setProducts([]);
     }
   };
 
@@ -59,6 +69,11 @@ function Header() {
     setDrawerOpen(shouldOpen);
   };
 
+  const handleClickAway = () => {
+    console.log("HELLLOOOSFD");
+    setSearchFocused(false);
+  };
+
   const isLoggedIn = () => localStorage.getItem("session") !== null;
 
   return (
@@ -66,9 +81,24 @@ function Header() {
       <div className={styles["header-logo"]} onClick={() => navigate("/")}>
         Tech Shop
       </div>
-      <div>
+      <div className={styles["header-right"]}>
+        <div>
+          <ClickAwayListener
+            onClickAway={handleClickAway}
+            children={
+              <Input
+                value={search}
+                onFocus={() => setSearchFocused(true)}
+                onChange={handleChange}
+              />
+            }
+          ></ClickAwayListener>
+          {products.length > 0 && searchFocused && (
+            <SearchProductList products={products} />
+          )}
+        </div>
         <div className={styles["menu-button"]} onClick={toggleDrawer(true)}>
-          <MenuIcon /> Menu
+          <MenuIcon style={{ marginRight: "10px" }} /> Menu
         </div>
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
           <div className={styles["drawer-content"]}>
