@@ -32,6 +32,7 @@ function TextHeader({
       style["textAlign"] = textAlign;
     }
     if (underlined) {
+      style["paddingBottom"] = "4px";
       style["borderBottom"] = `1px solid ${constants.colors.border}`;
       style["marginBottom"] = "24px";
     }

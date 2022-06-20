@@ -12,6 +12,10 @@ export const getProduct = ({ productId }) => {
   return Api.get(`products/${productId}`).then((res) => res);
 };
 
+export const addProduct = (payload) => {
+  return Api.post(`products`, payload).then((res) => res);
+};
+
 export const getProductReviews = ({ productId }) => {
   return Api.get(`reviews/${productId}`).then((res) => res);
 };
