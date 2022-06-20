@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Button, Drawer, IconButton, List, ListItem } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+} from "@mui/material";
 import { ChevronRight, Login, Logout } from "@mui/icons-material";
+import { getProducts } from "./../../api/products";
 import styles from "./Header.module.scss";
 import SidebarCart from "../SidebarCart";
 
 function Header() {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const handleChange = () => {
+    if (search.length > 3) {
+      getProducts({ page: 1, pageSize: 10, search: search }).then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      });
+    }
+  };
 
   const toggleDrawer = (shouldOpen) => (event) => {
     if (
