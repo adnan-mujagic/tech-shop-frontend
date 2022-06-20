@@ -1,0 +1,25 @@
+.add-product-inputs {
+  padding: 24px;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.image-adder {
+  display: flex;
+  align-items: center;
+}
+
+.url-container {
+  padding: 10px;
+  border: 1px solid var(--inputDark);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.custom-properties-container {
+  border: 1px solid var(--inputDark);
+  padding: 10px;
+  border-radius: 8px;
+}
