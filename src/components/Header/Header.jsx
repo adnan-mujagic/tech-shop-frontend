@@ -1,14 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  TextField,
+} from "@mui/material";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { Button, Drawer, IconButton, List, ListItem } from "@mui/material";
 import { ChevronRight, Login, Logout } from "@mui/icons-material";
+import { getProducts } from "./../../api/products";
 import styles from "./Header.module.scss";
 import SidebarCart from "../SidebarCart";
 import { admin } from "../../api/admin";
 import { styled } from "@mui/material/styles";
+import constants from "../../api/constants";
+import Input from "../Input/Input";
+import SearchProductList from "../SearchProductList";
 
 const buttonStyle = {
   marginBottom: "16px",
@@ -21,8 +32,23 @@ const DrawerButton = styled(Button)({
 
 function Header() {
   const navigate = useNavigate();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+    if (e.target.value.length > 2) {
+      getProducts({ page: 1, pageSize: 10, search: search }).then((res) => {
+        setProducts(res.data);
+      });
+    } else {
+      setProducts([]);
+    }
+  };
 
   useEffect(() => {
     admin().then((res) => {
@@ -47,9 +73,22 @@ function Header() {
       <div className={styles["header-logo"]} onClick={() => navigate("/")}>
         Tech Shop
       </div>
-      <div>
+      <div className={styles["header-right"]}>
+        <div>
+          <Input
+            value={search}
+            placeholder="Search"
+            onFocus={() => setSearchFocused(true)}
+            onChange={handleChange}
+            search
+          />
+          {products.length > 0 && searchFocused && (
+            <SearchProductList products={products} />
+          )}
+        </div>
         <div className={styles["menu-button"]} onClick={toggleDrawer(true)}>
-          <MenuIcon /> Menu
+          <MenuIcon style={{ marginRight: "10px" }} />{" "}
+          <div className={styles["menu-text"]}>Menu</div>
         </div>
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
           <div className={styles["drawer-content"]}>

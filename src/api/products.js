@@ -1,9 +1,11 @@
 import Api from "./api";
 
-export const getProducts = ({ page, pageSize }) => {
-  return Api.get(`products?page=${page}&pageSize=${pageSize}`).then(
-    (res) => res
-  );
+export const getProducts = ({ page, pageSize, search = null }) => {
+  let query = `products?page=${page}&pageSize=${pageSize}`;
+  if (search !== null) {
+    query += `&search=${search}`;
+  }
+  return Api.get(query).then((res) => res);
 };
 
 export const getProduct = ({ productId }) => {

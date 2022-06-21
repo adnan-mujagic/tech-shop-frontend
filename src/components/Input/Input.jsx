@@ -1,6 +1,7 @@
 import React from "react";
-import { TextField, styled } from "@mui/material";
+import { TextField, styled, InputAdornment } from "@mui/material";
 import constants from "./../../api/constants";
+import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
 
 const CustomInput = styled(TextField)({
@@ -40,6 +41,8 @@ function Input({
   margin,
   fullWidth,
   value,
+  onFocus,
+  search,
 }) {
   return (
     <CustomInput
@@ -51,6 +54,7 @@ function Input({
       label={label}
       placeholder={placeholder}
       value={value}
+      onFocus={onFocus}
       InputLabelProps={{
         style: {
           textOverflow: "ellipsis",
@@ -59,6 +63,15 @@ function Input({
           width: "100%",
           color: constants.colors.inputHover,
         },
+      }}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            {search && (
+              <SearchIcon style={{ color: constants.colors.inputHover }} />
+            )}
+          </InputAdornment>
+        ),
       }}
     />
   );
@@ -71,6 +84,7 @@ Input.defaultProps = {
   placeholder: "",
   label: "",
   password: false,
+  search: false,
 };
 
 Input.propTypes = {
@@ -81,6 +95,7 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string,
   margin: PropTypes.string,
+  search: PropTypes.bool,
 };
 
 export default Input;
