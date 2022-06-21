@@ -67,7 +67,9 @@ function Input({
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            <SearchIcon style={{ color: constants.colors.inputHover }} />
+            {search && (
+              <SearchIcon style={{ color: constants.colors.inputHover }} />
+            )}
           </InputAdornment>
         ),
       }}

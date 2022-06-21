@@ -80,6 +80,7 @@ function Header() {
             placeholder="Search"
             onFocus={() => setSearchFocused(true)}
             onChange={handleChange}
+            search
           />
           {products.length > 0 && searchFocused && (
             <SearchProductList products={products} />
