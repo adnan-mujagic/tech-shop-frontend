@@ -1,26 +1,28 @@
+import React, { useState, useEffect } from "react";
 import {
   CircularProgress,
   TableBody,
   TableHead,
   TableRow,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { mostSold } from "../../api/admin";
-import { CustomTable, CustomTableCell } from "../LowestInStock/LowestInStock";
-import TextHeader from "../TextHeader";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-import styles from "./MostSold.module.scss";
+import { favorites } from "../../api/admin";
 import constants from "../../api/constants";
+import TextHeader from "../TextHeader";
+import StarIcon from "@mui/icons-material/Star";
+import styles from "./FavoriteProducts.module.scss";
+import { CustomTable, CustomTableCell } from "../LowestInStock/LowestInStock";
 
-function MostSold() {
-  const [products, setProducts] = useState(null);
+function FavoriteProducts() {
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    mostSold().then((res) => {
+    favorites().then((res) => {
       setProducts(res?.data);
     });
   }, []);
+
+  console.log("favorite");
+  console.log(products);
 
   const getPlace = (idx) => {
     let place = idx + 1;
@@ -34,21 +36,25 @@ function MostSold() {
   };
 
   return (
-    <div>
-      {products != null ? (
-        <div className={styles["most-sold"]}>
-          <TextHeader underlined text={"Most sold items"} />
+    <div className={styles["favorites"]}>
+      <TextHeader
+        text={"Favorite items by average rating"}
+        underlined
+        type="h1"
+      />
+      {products.length > 0 ? (
+        <div>
           <CustomTable>
             <TableHead>
-              <CustomTableCell>Place</CustomTableCell>
+              <CustomTableCell>Rank</CustomTableCell>
               <CustomTableCell>ID</CustomTableCell>
               <CustomTableCell>Name</CustomTableCell>
-              <CustomTableCell>Amount sold</CustomTableCell>
+              <CustomTableCell>Average rating</CustomTableCell>
             </TableHead>
             <TableBody>
               {products.map((product, idx) => {
                 return (
-                  <TableRow>
+                  <TableRow key={idx}>
                     <CustomTableCell>{getPlace(idx)}</CustomTableCell>
                     <CustomTableCell>{product.product._id}</CustomTableCell>
                     <CustomTableCell>
@@ -67,7 +73,7 @@ function MostSold() {
                         {product.product.name}
                       </div>
                     </CustomTableCell>
-                    <CustomTableCell>{product.amount}</CustomTableCell>
+                    <CustomTableCell>{product.average_rating}</CustomTableCell>
                   </TableRow>
                 );
               })}
@@ -81,4 +87,4 @@ function MostSold() {
   );
 }
 
-export default MostSold;
+export default FavoriteProducts;

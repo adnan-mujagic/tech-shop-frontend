@@ -51,6 +51,7 @@ function LowestInStock() {
                     <CustomTableCell>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <img
+                          alt="product"
                           src={product.images[0]}
                           style={{
                             height: "48px",

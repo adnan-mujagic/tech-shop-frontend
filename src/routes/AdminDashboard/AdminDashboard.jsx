@@ -5,6 +5,7 @@ import AddProductForm from "../../components/AddProductForm";
 import Header from "../../components/Header";
 import LowestInStock from "../../components/LowestInStock";
 import MostSold from "../../components/MostSold";
+import FavoriteProducts from "../../components/FavoriteProducts";
 import styles from "./AdminDashboard.module.scss";
 
 function AdminDashboard() {
@@ -33,6 +34,7 @@ function AdminDashboard() {
           <AddProductForm />
           <LowestInStock />
           <MostSold />
+          <FavoriteProducts />
         </div>
       )}
       {loading && <CircularProgress />}
