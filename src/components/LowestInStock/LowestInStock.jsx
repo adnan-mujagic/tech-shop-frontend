@@ -44,9 +44,9 @@ function LowestInStock() {
               <CustomTableCell>Amount in stock</CustomTableCell>
             </TableHead>
             <TableBody>
-              {products.map((product) => {
+              {products.map((product, idx) => {
                 return (
-                  <TableRow>
+                  <TableRow key={idx}>
                     <CustomTableCell>{product._id}</CustomTableCell>
                     <CustomTableCell>
                       <div style={{ display: "flex", alignItems: "center" }}>

@@ -48,7 +48,7 @@ function MostSold() {
             <TableBody>
               {products.map((product, idx) => {
                 return (
-                  <TableRow>
+                  <TableRow key={idx}>
                     <CustomTableCell>{getPlace(idx)}</CustomTableCell>
                     <CustomTableCell>{product.product._id}</CustomTableCell>
                     <CustomTableCell>
