@@ -21,9 +21,6 @@ function FavoriteProducts() {
     });
   }, []);
 
-  console.log("favorite");
-  console.log(products);
-
   const getPlace = (idx) => {
     let place = idx + 1;
     if (place === 1) {
