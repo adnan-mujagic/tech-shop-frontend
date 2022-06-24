@@ -42,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chromedriver": "^103.0.0",
+    "nightwatch": "^2.2.2"
   }
 }
